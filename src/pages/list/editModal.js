@@ -22,7 +22,11 @@ class EditModal extends React.Component {
         this.state = {
             id: this.props.id,
             name: this.props.name,
-            youtube: this.props.youtube
+            youtube: this.props.youtube,
+            errors: {
+                name: '',
+                youtube: ''
+            }
         };
 
         bindAll(this, ['close', 'changeName', 'changeLink', 'save']);
@@ -42,6 +46,24 @@ class EditModal extends React.Component {
 
     save() {
         const {id, name, youtube} = this.state;
+        const errrorTitle = 'field must not be empty';
+        const errors = {
+            name: '',
+            youtube: ''
+        };
+
+        if (name === '') {
+            errors.name = errrorTitle;
+            this.setState({errors});
+            return;
+        }
+
+        if (youtube === '') {
+            errors.youtube = errrorTitle;
+            this.setState({errors});
+            return;
+        }
+
         this.props.dispatch(this.props.onSave({id, name, youtube}));
         this.close();
     }
@@ -51,8 +73,8 @@ class EditModal extends React.Component {
             <div>
                 <div className='modal-body'>
                     <p><b>ID:</b> {this.state.id} </p>
-                    <Input value={this.state.name} onChange={this.changeName}/>
-                    <Input value={this.state.youtube} onChange={this.changeLink}/>
+                    <Input value={this.state.name} onChange={this.changeName} error={this.state.errors.name}/>
+                    <Input value={this.state.youtube} onChange={this.changeLink} error={this.state.errors.youtube}/>
                 </div>
                 <div className='modal-footer'>
                     <button className='btn btn-default' onClick={this.close}>Close</button>

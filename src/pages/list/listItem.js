@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {openModal} from '../../components/model/index';
 import EditModal from './editModal';
-import {editItems} from './actions';
+import DeleteModal from './deleteModal';
+import {editItems, deleteItems} from './actions';
 
 class ListItem extends React.Component {
 
-    static propTypes={
+    static propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         youtube: PropTypes.string.isRequired,
@@ -18,6 +19,7 @@ class ListItem extends React.Component {
     constructor(props) {
         super(props);
         this.edit = this.edit.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     edit() {
@@ -31,6 +33,16 @@ class ListItem extends React.Component {
         }));
     }
 
+    delete() {
+        const {id, name} = this.props;
+        this.props.dispatch(openModal({
+            content: <DeleteModal id={id}
+                                  name={name}
+                                  onSuccess={deleteItems}/>,
+            title: 'You really want to remove it?'
+        }));
+    }
+
     render() {
         return (
 
@@ -41,10 +53,10 @@ class ListItem extends React.Component {
                 </td>
                 <td>
                     <button className='react' onClick={this.edit}>
-                        <i className='fab fa-react' />
+                        <i className='fab fa-react'/>
                     </button>
-                    <button className='angular'>
-                        <i className='fab fa-angular' />
+                    <button className='angular' onClick={this.delete}>
+                        <i className='fab fa-angular'/>
                     </button>
                 </td>
             </tr>
@@ -53,8 +65,7 @@ class ListItem extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-    };
+    return {};
 }
 
 export default connect(mapStateToProps)(ListItem);
