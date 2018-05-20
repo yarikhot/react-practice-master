@@ -34,7 +34,6 @@ class DeleteModal extends React.Component {
                 <div className='modal-body'>
                     <p><b>ID:</b>{this.props.id}</p>
                     <p><b>Name:</b>{this.props.name}</p>
-                    <p>{this.props.youtube}</p>
                 </div>
                 <div className='modal-footer'>
                     <button className='btn btn-default' onClick={this.close}>No</button>

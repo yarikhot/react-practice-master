@@ -42,6 +42,24 @@ header {
       animation: App-logo-spin infinite 20s linear;
       height: 80px; }
 
+.form-validation {
+  height: 100%;
+  background-color: #61dafb;
+  padding: 100px 0; }
+  .form-validation form {
+    color: #1e1f21; }
+    .form-validation form h5 {
+      padding-top: 15px; }
+    .form-validation form button {
+      padding: 10px 40px;
+      margin-top: 20px;
+      border-radius: 50px;
+      border: none;
+      background-color: #1e1f21;
+      color: #61dafb; }
+      .form-validation form button:focus {
+        outline: none; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); }
@@ -151,6 +169,16 @@ header {
 
 .angular {
   color: red; }
+
+.mt-50 {
+  margin-top: 100px; }
+
+.b-alert {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 100px;
+  text-align: center; }
 
 .youtube {
   background-color: #1e1f21;
@@ -303,7 +331,7 @@ header {
 @font-face {
   font-family: "FontAwesome";
   src: url("../../fonts/fontawesome-webfont.eot?v=4.4.0");
-  src: url("../../fonts/fontawesome-webfont.eot?#iefix&v=4.4.0") format("embedded-opentype"), url("../../fonts/fontsfontawesome-webfont.woff2?v=4.4.0") format("woff2"), url("../../fonts/fontsfontawesome-webfont.woff?v=4.4.0") format("woff"), url("../../fonts/fontawesome-webfont.ttf?v=4.4.0") format("truetype"), url("../../fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular") format("svg");
+  src: url("../../fonts/fontawesome-webfont.eot?#iefix&v=4.4.0") format("embedded-opentype"), url("../../fonts/fontawesome-webfont.ttf?v=4.4.0") format("truetype"), url("../../fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 .fa {

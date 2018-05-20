@@ -1,13 +1,8 @@
 import {ADD_TODO, LIKE_TODO, DEL_TODO, GET_TODO} from './action';
+import { isEmpty, isObject } from 'lodash';
 
 const initialState = {
-    todos: [
-        {
-            id: 1,
-            name: 'Message',
-            liked: false
-        }
-    ],
+    todos: [],
     error: '',
     isLoading: true
 };
@@ -15,13 +10,13 @@ const initialState = {
 function homeReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TODO:
-            const todos = state.todos;
             if (!action.error) {
-                todos.push({id: action.id, name: action.name, liked: false});
+                if (isEmpty(state.todos) && isObject(state.todos)) state.todos = [];
+                state.todos.push({id: action.id, name: action.name, liked: false});
             }
             return Object.assign({}, state, {
                 error: action.error,
-                todos
+                todos: state.todos
             });
         case LIKE_TODO:
             const idx = state.todos.findIndex(todo => todo.id === action.todo.id);
@@ -31,7 +26,9 @@ function homeReducer(state = initialState, action) {
             const filterTodos = state.todos.filter(todo => todo.id !== action.todo.id);
             return Object.assign({}, state, {todos: filterTodos});
         case GET_TODO:
-            return Object.assign({}, state, {todo: action.todo, isLoading: false });
+            return Object.assign({}, state, {
+                todos: action.todos,
+                isLoading: false });
         default:
             return state;
     }

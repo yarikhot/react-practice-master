@@ -14,7 +14,7 @@ import {LocalStorageManager} from '../../devtool';
 import Loader from '../../components/ui/loader/index';
 
 
-export class HomePages extends React.Component {
+class HomePages extends React.Component {
 
     static path = '/home';
     static propTypes = {
@@ -78,7 +78,7 @@ export class HomePages extends React.Component {
                     <div className='row'>
                         <div className='col-md-6 col-lg-6 col-xs-12 col-sm-12'>
                             <div className='messager'>
-                                  {isLoading ? <Loader/> : todos.length !== 0 ? todos.map(this.renderTodos) : 'not elements'}
+                                  {isLoading ? <Loader/> : todos.length ? todos.map(this.renderTodos) : 'not elements'}
 
                                 <Input
                                     value={todoName}

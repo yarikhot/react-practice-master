@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {DevTools} from './devtool/index';
 import Header from './components/header/index';
 import {Modal} from './components/model/index';
+import {Alert} from './components/alert/index';
 
 export default class App extends React.Component {
 
@@ -14,10 +15,11 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
+                <Alert />
                 <Modal />
                 <Header />
                 { this.props.children }
-                {process.env.NODE_ENV !== 'production' ? <DevTools/> : null}
+                {NODE_ENV !== 'production' ? <DevTools/> : null}
             </div>
         );
     }
